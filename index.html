@@ -1,56 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        body {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          width: 100vw;
-          background: white;
-          margin: 0;
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background: white;
+        margin: 0;
+      }
+
+      .wheel-container {
+        width: 400px;
+        height: 400px;
+        margin: 50px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .wheel {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        border-radius: 50%;
+        background: conic-gradient(
+          #ff0000 0% 25%,
+          #00ff00 25% 50%,
+          #0000ff 50% 75%,
+          #ffff00 75% 100%
+        );
+        transition: transform 1s ease-in-out;
+      }
+
+      .wheel-container:hover .wheel {
+        animation: rotateClockwise 1s linear infinite;
+      }
+
+      .wheel-container .wheel {
+        animation: rotateBack 1.5s ease-in-out;
+      }
+
+      @keyframes rotateClockwise {
+        0% {
+          transform: rotate(0deg);
         }
-    
-        .wheel {
-          width: 400px;
-          height: 400px;
-          position: relative;
-          border-radius: 50%;
-          background: conic-gradient(red, yellow, green, blue, red);
+        100% {
+          transform: rotate(360deg);
         }
-    
-        .wheel:hover {
-          animation: spin 2s linear infinite;
+      }
+
+      @keyframes rotateBack {
+        0% {
+          transform: rotate(360deg);
         }
-    
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+        100% {
+          transform: rotate(0deg);
         }
-    
-        .wheel-center {
-          position: absolute;
-          width: 250px;
-          height: 250px;
-          background: white;
-          border-radius: 50%;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      </style>
-</head>
-<body>
-    <div class="wheel">
+      }
+
+      .wheel-center {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        background: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wheel-container">
+      <div class="wheel">
         <div class="wheel-center"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
